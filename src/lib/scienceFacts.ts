@@ -1294,11 +1294,13 @@ const RULES: InsightRule[] = [
   {
     detect: d =>
       matchesText(d.rawText, [
+        'shower', 'bath', 'bathtub',
         'taking a bath', 'taking a shower', 'in the bath', 'in the shower',
-        'having a shower', 'having a bath', 'washing myself', 'washing my body',
+        'having a shower', 'having a bath', 'take a shower', 'took a shower',
+        'had a shower', 'washing myself', 'washing my body',
         'couldn\'t get clean', 'still dirty after washing', 'washed it off',
-        'cleansing myself', 'scrubbing myself', 'soap', 'lather', 'bathtub',
-      ]),
+        'cleansing myself', 'scrubbing myself', 'soap', 'lather',
+      ]) || matchesObjects(d.objects, ['shower', 'bath', 'bathtub']),
     insight: {
       tag: 'Purification: washing the emotional slate',
       headline: 'Bathing in dreams encodes the desire or need for purification and emotional cleansing',
@@ -1744,7 +1746,7 @@ const IPA_RULES: { detect: (d: MorningEntryDraft) => boolean; question: IPAQuest
   { detect: d => matchesText(d.rawText, ['couldn\'t get clean', 'still dirty after washing', 'washed it off']),
     question: { prompt: 'What do you feel contaminated by that ordinary cleansing will not reach? What guilt, shame, or residue of an experience has gotten beneath the surface in a way that cannot be washed off from the outside?', subtext: 'Inability to get clean encodes a contamination that is internal, not external.' }},
 
-  { detect: d => matchesText(d.rawText, ['taking a bath', 'taking a shower', 'having a shower', 'having a bath', 'washing myself', 'bathtub', 'cleansing']),
+  { detect: d => matchesText(d.rawText, ['shower', 'bath', 'bathtub', 'taking a bath', 'taking a shower', 'having a shower', 'having a bath', 'take a shower', 'took a shower', 'washing myself', 'cleansing']) || matchesObjects(d.objects, ['shower', 'bath', 'bathtub']),
     question: { prompt: 'What are you trying to wash off or wash away right now? What residue of a recent experience, emotion, or situation are you ready to be clean of?', subtext: 'Bathing in dreams is purification: something needs to be left behind.' }},
 
   // ── Vampire ──────────────────────────────────────────────────────────────────
