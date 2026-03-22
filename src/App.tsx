@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { BottomNav } from './components/BottomNav'
 import { NightBackground } from './components/NightBackground'
+import { LandingScreen } from './screens/LandingScreen'
 import { HomeScreen } from './screens/HomeScreen'
 import { MorningEntryScreen } from './screens/MorningEntryScreen'
 import { EveningScreen } from './screens/EveningScreen'
@@ -23,7 +24,8 @@ export default function App() {
       <NightBackground />
       <div className="relative min-h-dvh" style={{ zIndex: 2 }}>
         <Routes>
-          <Route path="/" element={<Layout><HomeScreen /></Layout>} />
+          <Route path="/" element={<LandingScreen />} />
+          <Route path="/home" element={<Layout><HomeScreen /></Layout>} />
           <Route path="/entry" element={<MorningEntryScreen />} />
           <Route path="/evening" element={<EveningScreen />} />
           <Route path="/journal" element={<Layout><JournalScreen /></Layout>} />

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { House, Notebook, ChartLineUp, Sliders } from '@phosphor-icons/react'
 
 const links = [
-  { to: '/', icon: House, label: 'Home' },
+  { to: '/home', icon: House, label: 'Home' },
   { to: '/journal', icon: Notebook, label: 'Journal' },
   { to: '/patterns', icon: ChartLineUp, label: 'Patterns' },
   { to: '/settings', icon: Sliders, label: 'Settings' },
@@ -16,7 +16,7 @@ export function BottomNav() {
           <NavLink
             key={to}
             to={to}
-            end={to === '/'}
+            end={to === '/home'}
             className={({ isActive }) =>
               `flex flex-col items-center gap-1 py-3 px-4 min-w-[44px] transition-colors ${
                 isActive ? 'text-accent' : 'text-zinc-500/80'

@@ -34,7 +34,7 @@ export function EveningScreen() {
         sleepIntention: intention.trim(),
         stressLevel,
       })
-      navigate('/', { replace: true })
+      navigate('/home', { replace: true })
     } finally {
       setSaving(false)
     }

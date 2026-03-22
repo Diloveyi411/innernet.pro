@@ -83,7 +83,7 @@ export function MorningEntryScreen() {
         createdAt: new Date().toISOString(),
         ...draft,
       })
-      navigate('/', { replace: true })
+      navigate('/home', { replace: true })
     } finally {
       setSaving(false)
     }
