@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Brain, ChartLineUp, Flask, ArrowRight, Lightning } from '@phosphor-icons/react'
+import { Brain, ChartLineUp, Flask, ArrowRight, Lightning, Check } from '@phosphor-icons/react'
 
 const FEATURES = [
   {
@@ -27,6 +28,67 @@ const STATS = [
   { value: '2h', label: 'average nightly REM sleep. Your brain\'s processing time.' },
   { value: '100%', label: 'stored locally on your device. Private by design.' },
 ]
+
+function EmailCapture() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!email.includes('@')) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      setStatus(res.ok ? 'done' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'done') {
+    return (
+      <div className="flex items-center gap-3 px-5 py-4 rounded-xl bg-white/[0.04] border border-white/[0.08]">
+        <div className="w-8 h-8 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center shrink-0">
+          <Check size={16} weight="bold" className="text-accent" />
+        </div>
+        <div>
+          <p className="text-sm font-medium text-zinc-100">You are in.</p>
+          <p className="text-xs text-zinc-500">We will reach out when something worth sharing happens.</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <div className="flex gap-2">
+        <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          required
+          className="flex-1 bg-white/[0.04] border border-white/[0.10] rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+        />
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className="px-5 py-3 rounded-xl bg-accent text-white font-semibold text-sm tracking-tight transition-opacity disabled:opacity-50 active:opacity-80 shrink-0"
+        >
+          {status === 'loading' ? '...' : 'Join'}
+        </button>
+      </div>
+      {status === 'error' && (
+        <p className="text-xs text-red-400 font-mono">Something went wrong. Try again.</p>
+      )}
+      <p className="text-[11px] font-mono text-zinc-600">No spam. Updates only when they matter.</p>
+    </form>
+  )
+}
 
 export function LandingScreen() {
   const navigate = useNavigate()
@@ -161,6 +223,17 @@ export function LandingScreen() {
           >
             Start now. It takes 2 minutes.
           </button>
+        </div>
+      </section>
+
+      {/* Email capture */}
+      <section className="px-6 pb-16">
+        <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.07]">
+          <p className="text-[10px] font-mono text-zinc-500 tracking-[0.2em] uppercase mb-3">Stay in the loop</p>
+          <p className="text-sm text-zinc-300 mb-5 leading-relaxed">
+            Early access updates, new research, and product releases. One email at a time.
+          </p>
+          <EmailCapture />
         </div>
       </section>
 
