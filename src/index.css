@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Epistemic color system ─────────────────────────────────────────────── */
+  /* Each color carries cognitive status, not decoration */
+  --color-fact:            #4F7CFF;   /* replicated research — cognitive trust */
+  --color-fact-dim:        rgba(79, 124, 255, 0.12);
+  --color-fact-border:     rgba(79, 124, 255, 0.28);
+
+  --color-pattern:         #7CF2D3;   /* pattern detected / insight emergence */
+  --color-pattern-dim:     rgba(124, 242, 211, 0.10);
+  --color-pattern-border:  rgba(124, 242, 211, 0.25);
+
+  --color-symbol:          #C9A7FF;   /* symbolic / dream layer — controlled use */
+  --color-symbol-dim:      rgba(201, 167, 255, 0.10);
+  --color-symbol-border:   rgba(201, 167, 255, 0.25);
+
+  --color-uncertain:       #FF6B6B;   /* low confidence / bias risk */
+  --color-uncertain-dim:   rgba(255, 107, 107, 0.10);
+  --color-uncertain-border:rgba(255, 107, 107, 0.25);
+
+  /* ── Accent (maps to fact/blue by default) ──────────────────────────────── */
+  --color-accent:          #4F7CFF;
+  --color-accent-dim:      rgba(79, 124, 255, 0.12);
+  --color-accent-border:   rgba(79, 124, 255, 0.28);
+
+  /* ── Base background ────────────────────────────────────────────────────── */
+  --color-base:            #0B0F14;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #080C11;
+  color: #f4f4f5;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* Monospace layer — analysis, citations, reasoning chains */
+.mono, code, .font-mono {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ── Motion system ──────────────────────────────────────────────────────────── */
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 124, 255, 0); }
+  50%       { box-shadow: 0 0 24px 4px rgba(79, 124, 255, 0.12); }
+}
+
+@keyframes reveal-bar {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+.animate-breathe    { animation: breathe 3s ease-in-out infinite; }
+.animate-fade-up    { animation: fade-up 0.4s ease-out both; }
+.animate-fade-in    { animation: fade-in 0.3s ease-out both; }
+.animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+.animate-fade-up-1 { animation: fade-up 0.4s 0.1s ease-out both; }
+.animate-fade-up-2 { animation: fade-up 0.4s 0.3s ease-out both; }
+.animate-fade-up-3 { animation: fade-up 0.4s 0.55s ease-out both; }
+.animate-fade-up-4 { animation: fade-up 0.4s 0.8s ease-out both; }
+
+/* Gradient headline — alive text */
+.text-gradient {
+  background: linear-gradient(135deg, #e4e4e7 0%, #a1a1aa 60%, #4F7CFF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Breathing ambient glow behind sections */
+.ambient-glow {
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79,124,255,0.07) 0%, transparent 70%);
+}
+
