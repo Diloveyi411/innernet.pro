@@ -159,7 +159,7 @@ export function LandingScreen() {
             onClick={() => navigate('/home')}
             className="w-full py-4 rounded-xl bg-accent text-white font-semibold text-base tracking-tight transition-opacity active:opacity-80"
           >
-            Start now — it takes 2 minutes
+            Start now. It takes 2 minutes.
           </button>
         </div>
       </section>
