@@ -2,13 +2,22 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Check } from '@phosphor-icons/react'
 import { useCheckins } from '../hooks/useCheckins'
+import { useResearchMode } from '../hooks/useResearchMode'
 import { generateId, ALL_EMOTIONS, EMOTION_LABELS } from '../lib/utils'
 import { ScienceBadge } from '../components/ScienceBadge'
 import type { Emotion } from '../types'
 
+const EVENING_INSIGHT = {
+  tag: 'Intention setting',
+  headline: 'Brief positive intention-setting before sleep measurably shifts dream emotional content',
+  text: 'Brief positive intention-setting before sleep measurably shifts dream emotional content over two weeks.',
+  citation: 'Frontiers in Sleep (2025)',
+}
+
 export function EveningScreen() {
   const navigate = useNavigate()
   const { todayCheckin, save } = useCheckins()
+  const { researchMode } = useResearchMode()
   const [dayEmotion, setDayEmotion] = useState<Emotion | null>(todayCheckin?.dayEmotion ?? null)
   const [intention, setIntention] = useState(todayCheckin?.sleepIntention ?? '')
   const [stressLevel, setStressLevel] = useState<1 | 2 | 3 | 4 | 5>(todayCheckin?.stressLevel ?? 3)
@@ -104,10 +113,7 @@ export function EveningScreen() {
           className="w-full bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-xl px-4 py-3 text-zinc-200 placeholder-zinc-600 text-sm leading-relaxed resize-none focus:outline-none focus:border-accent/60 mb-6"
         />
 
-        <ScienceBadge
-          text="Brief positive intention-setting before sleep measurably shifts dream emotional content over two weeks."
-          citation="Frontiers in Sleep (2025)"
-        />
+        <ScienceBadge insight={EVENING_INSIGHT} researchMode={researchMode} />
       </div>
 
       <div className="px-5 py-6">

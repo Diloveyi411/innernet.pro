@@ -11,7 +11,7 @@ import type { MorningEntryDraft } from '../types'
 
 export function JournalScreen() {
   const [query, setQuery] = useState('')
-  const { dreams, remove } = useDreams()
+  const { dreams } = useDreams()
   const navigate = useNavigate()
 
   const filtered = query.trim()

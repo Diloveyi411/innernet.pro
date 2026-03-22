@@ -1,4 +1,4 @@
-import type { Emotion, MorningEntryDraft } from '../types'
+import type { MorningEntryDraft } from '../types'
 
 export type EpistemicStatus = 'fact' | 'inference' | 'speculation'
 

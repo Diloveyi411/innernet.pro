@@ -5,7 +5,7 @@ import { useDreams } from '../hooks/useDreams'
 import { useResearchMode } from '../hooks/useResearchMode'
 import { ScienceBadge } from '../components/ScienceBadge'
 import { getInsightForEntry, getInsightsForEntry, getIPAQuestion } from '../lib/scienceFacts'
-import { generateId, ALL_EMOTIONS, EMOTION_LABELS, EMOTION_COLORS, todayKey } from '../lib/utils'
+import { generateId, ALL_EMOTIONS, EMOTION_LABELS, EMOTION_COLORS } from '../lib/utils'
 import type { MorningEntryDraft, Emotion } from '../types'
 
 const STEPS = [
@@ -15,8 +15,6 @@ const STEPS = [
   { id: 'Insight', label: 'Insight', next: 'Reflect' },
   { id: 'Reflect', label: 'Reflect', next: null },
 ] as const
-
-type StepId = typeof STEPS[number]['id']
 
 const EMPTY_DRAFT: MorningEntryDraft = {
   rawText: '',

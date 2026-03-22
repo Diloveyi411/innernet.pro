@@ -23,8 +23,6 @@ export function HomeScreen() {
   const recentDreams = dreams.slice(0, 3)
   const { greeting, subtitle, primaryAction } = getTimeContext()
 
-  const showEveningCTA = !todayCheckin && primaryAction === 'evening'
-
   return (
     <div className="flex flex-col min-h-dvh bg-transparent pb-24">
       {/* Ambient glow: alive interface */}
