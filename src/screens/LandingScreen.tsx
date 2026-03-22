@@ -6,7 +6,7 @@ const FEATURES = [
     icon: Brain,
     tag: 'Capture',
     headline: '60 seconds each morning',
-    body: 'Describe what you dreamed in your own words. No templates, no structure — just raw recall before it fades.',
+    body: 'Describe what you dreamed in your own words. No templates, no structure. Just raw recall before it fades.',
   },
   {
     icon: Flask,
@@ -24,7 +24,7 @@ const FEATURES = [
 
 const STATS = [
   { value: '95%', label: 'of dreams forgotten within 10 minutes of waking' },
-  { value: '2h', label: 'average nightly REM sleep — your brain\'s processing time' },
+  { value: '2h', label: 'average nightly REM sleep. Your brain\'s processing time.' },
   { value: '100%', label: 'stored locally on your device. Private by design.' },
 ]
 
@@ -129,7 +129,7 @@ export function LandingScreen() {
           />
           <p className="text-[10px] font-mono text-zinc-500 tracking-[0.2em] uppercase mb-4">Research basis</p>
           <p className="text-sm text-zinc-300 leading-relaxed mb-4">
-            Sleep science has made significant advances in the last decade. We read the papers so you don't have to — and surface what's actually relevant to your patterns.
+            Sleep science has made significant advances in the last decade. We read the papers so you don't have to, and surface what's actually relevant to your patterns.
           </p>
           <div className="flex flex-col gap-2">
             {[
